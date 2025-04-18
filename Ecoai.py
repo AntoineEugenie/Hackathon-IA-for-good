@@ -12,16 +12,19 @@ st.markdown("""
 Bienvenue dans ce calculateur vert 🌱 ! Découvrez combien d'énergie, d'eau et d'émissions de CO2e génère votre usage quotidien des IA, et adoptez un usage plus responsable 💚.
 """)
 
-# Données d'estimation par requête (en Wh, gCO2e, L d'eau)
+# Données d'estimation par requête (en Wh, gCO2e, Litre d'eau)
 data = {
-    "GPT-3.5": {"conso": 0.35, "co2": 0.2, "eau": 0.5},
-    "GPT-4": {"conso": 2.9, "co2": 1.4, "eau": 3.0},
+    "GPT-3.5": {"conso": 0.35, "co2": 0.2, "eau": 0.6},
+    "GPT-4": {"conso": 2.9, "co2": 1.4, "eau": 3.8},
     "Midjourney": {"conso": 6.0, "co2": 3.0, "eau": 5.0},
     "DALL·E": {"conso": 2.5, "co2": 1.2, "eau": 2.5},
-    "Copilot": {"conso": 0.5, "co2": 0.25, "eau": 0.6},
+    "Copilot": {"conso": 0.5, "co2": 0.25, "eau": 0.8},
     "Gemini": {"conso": 2.0, "co2": 1.0, "eau": 2.0},
-    "Mistral": {"conso": 0.3, "co2": 0.15, "eau": 0.4},
+    "Mistral": {"conso": 0.3, "co2": 0.15, "eau": 0.2},
     "Claude": {"conso": 1.5, "co2": 0.7, "eau": 1.2},
+    "Golem AI": {"conso": 0.05, "co2": 0.01, "eau": 0.05},
+    "DeepSeek": {"conso": 0.7, "co2": 0.4, "eau": 0.9},
+    "BLOOM": {"conso": 1.0, "co2": 0.5, "eau": 0.3}
 }
 
 model = st.selectbox("🤖 Quel modèle d'IA utilisez-vous principalement ?", list(data.keys()))
