@@ -4,7 +4,15 @@ import pandas as pd
 
 st.set_page_config(page_title="Impact IA", layout="centered")
 
-
+st.markdown("""<style>.card {
+        background-color: #5DA28D;
+        padding: 10px;
+        border-radius: 10px;
+        border: 1px solid #b2dfc1;
+        margin-bottom: 10px;
+    }
+    </style>
+""", unsafe_allow_html=True)
 
 st.title("🌍 Estimez l'impact écologique de votre utilisation de l'IA")
 
@@ -26,7 +34,6 @@ data = {
     "DeepSeek": {"conso": 0.7, "co2": 0.4, "eau": 0.9},
     "BLOOM": {"conso": 1.0, "co2": 0.5, "eau": 0.3}
 }
-
 model = st.selectbox("🤖 Quel modèle d'IA utilisez-vous principalement ?", list(data.keys()))
 requests_per_day = st.slider("📅 Combien de requêtes envoyez-vous par jour ?", 1, 200, 10)
 
@@ -88,3 +95,16 @@ st.markdown("""
 6. 💧 **Pensez à l'eau** : L'entraînement et l'utilisation des IA consomment aussi de l'eau, souvent invisible mais bien réelle.
 7. 🧠 **Adoptez un usage raisonné** : L’IA est puissante, mais chaque prompt a un coût pour la planète 🌍.
 """)
+
+
+# Liste triée des modèles les plus écologiques
+sorted_models = sorted(data.items(), key=lambda x: (x[1]['conso'], x[1]['co2'], x[1]['eau']))
+
+st.subheader("🌿 Classements des modèles d'IA les plus écologiques")
+for model_name, values in sorted_models:
+    st.markdown(f"""
+    <div class='card'>
+        <strong>{model_name}</strong><br>
+        ⚡ {values['conso']} Wh — 🌫️ {values['co2']} g CO₂e — 💧 {values['eau']} L
+    </div>
+    """, unsafe_allow_html=True)
